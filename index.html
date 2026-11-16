@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="description" content="Peg City Pops — Funko Pops for sale in Winnipeg — 234 figures in stock, photographed and condition-checked, local pickup in Elmwood. New stock listed weekly." />
+    <meta name="description" content="Peg City Pops — Funko Pops for sale in Winnipeg. One collector-seller in Elmwood; every box photographed by hand, local pickup at Jamison Food Marts. New stock most weeks." />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -54,7 +54,9 @@
       @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
       body {
         margin: 0;
-        background: var(--bg);
+        background-color: var(--bg);
+        background-image: radial-gradient(color-mix(in srgb, var(--ink) 5.5%, transparent) 1px, transparent 1.5px);
+        background-size: 22px 22px;
         color: var(--ink);
         font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
         font-size: 16px;
@@ -86,15 +88,24 @@
         margin: 0 0 14px;
         max-width: 12ch;
       }
-      .hero h1 .pop { color: var(--accent); }
+      .hero h1 .pop { color: var(--accent); box-shadow: inset 0 -.3em 0 var(--gold-soft); }
       .hero p.lede { font-size: clamp(1.02rem, 2.4vw, 1.2rem); color: var(--ink-soft); max-width: 58ch; margin: 0 0 26px; }
-      .stats { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 10px; }
-      .stat {
-        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-        padding: 12px 18px 10px; box-shadow: var(--shadow); min-width: 132px;
+      .hero { position: relative; }
+      .sticker {
+        display: inline-block; margin: 0 0 18px; transform: rotate(-2.5deg);
+        background: var(--gold-soft); color: var(--gold); border: 2px dashed var(--gold);
+        font-weight: 700; font-size: .92rem; padding: 7px 14px; border-radius: 8px;
       }
-      .stat b { display: block; font-family: "Baloo 2", sans-serif; font-size: 1.65rem; line-height: 1.05; font-weight: 800; }
-      .stat span { font-size: .82rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+      @media (min-width: 900px) {
+        .sticker { position: absolute; right: 6px; top: 108px; margin: 0; transform: rotate(3deg); font-size: 1rem; padding: 9px 16px; }
+      }
+      .strip {
+        border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
+        padding: 10px 2px; margin-bottom: 6px;
+        font-family: "Baloo 2", sans-serif; font-weight: 700; font-size: 1.05rem;
+        display: flex; flex-wrap: wrap; gap: 4px 14px;
+      }
+      .strip .sep { color: var(--accent); }
 
       /* ---------- Toolbar ---------- */
       .toolbar {
@@ -108,23 +119,23 @@
       .search { flex: 1 1 240px; position: relative; }
       .search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; stroke: var(--ink-soft); pointer-events: none; }
       .search input {
-        width: 100%; padding: 10px 14px 10px 40px; border-radius: 999px;
-        border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+        width: 100%; padding: 10px 14px 10px 40px; border-radius: 10px;
+        border: 2px solid var(--ink); background: var(--surface); color: var(--ink);
       }
       .search input::placeholder { color: var(--ink-soft); }
       .sort select {
-        padding: 9px 12px; border-radius: 999px; border: 1px solid var(--line);
+        padding: 9px 12px; border-radius: 10px; border: 2px solid var(--ink);
         background: var(--surface); color: var(--ink); cursor: pointer;
       }
       .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
       .chip {
-        border: 1px solid var(--line); background: var(--surface); color: var(--ink);
-        border-radius: 999px; padding: 7px 14px; cursor: pointer; font-weight: 600; font-size: .92rem;
-        min-height: 2.25rem;
+        border: 2px solid var(--ink); background: var(--surface); color: var(--ink);
+        border-radius: 8px; padding: 7px 13px; cursor: pointer; font-weight: 600; font-size: .92rem;
+        min-height: 2.25rem; box-shadow: 2px 2px 0 color-mix(in srgb, var(--ink) 18%, transparent);
       }
       .chip .n { color: var(--ink-soft); font-weight: 500; margin-left: 4px; }
-      .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-      .chip[aria-pressed="true"] .n { color: inherit; opacity: .7; }
+      .chip[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--ink); }
+      .chip[aria-pressed="true"] .n { color: inherit; opacity: .75; }
       .result-line { margin: 14px 2px 0; color: var(--ink-soft); font-size: .95rem; }
       .result-line b { color: var(--ink); }
 
@@ -137,10 +148,14 @@
       @media (min-width: 960px) { .grid { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
       @media (min-width: 1200px) { .grid { grid-template-columns: repeat(5, 1fr); } }
       .card {
-        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-        overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow);
+        background: var(--surface); border: 2px solid var(--ink); border-radius: var(--radius);
+        overflow: hidden; display: flex; flex-direction: column;
+        box-shadow: 5px 5px 0 color-mix(in srgb, var(--ink) 13%, transparent);
         content-visibility: auto; contain-intrinsic-size: auto 380px;
+        transition: transform .15s ease, box-shadow .15s ease;
       }
+      .card:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 color-mix(in srgb, var(--ink) 16%, transparent); }
+      @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
       .ph { position: relative; aspect-ratio: 1 / 1; background: var(--surface-2); overflow: hidden; }
       .ph .initial {
         position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
@@ -149,19 +164,23 @@
       }
       .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
       .badge-new {
-        position: absolute; top: 10px; left: 10px; z-index: 2;
+        position: absolute; top: 12px; left: 10px; z-index: 2; transform: rotate(-4deg);
         background: var(--accent); color: var(--accent-ink);
         font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
-        padding: 4px 9px; border-radius: 999px;
+        padding: 4px 9px; border-radius: 4px; box-shadow: 2px 2px 0 rgba(0,0,0,.25);
       }
       @media (prefers-color-scheme: dark) { .badge-new { color: #fff; } }
       .card-body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
       .card h3 {
-        margin: 0; font-size: .95rem; font-weight: 600; line-height: 1.35;
+        margin: 0; font-size: .95rem; font-weight: 700; line-height: 1.35;
         display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
       }
       .meta { display: flex; align-items: center; justify-content: space-between; gap: 6px 8px; margin-top: auto; flex-wrap: wrap; }
-      .price { font-family: "Baloo 2", sans-serif; font-weight: 800; font-size: 1.3rem; line-height: 1; }
+      .price {
+        font-family: "Baloo 2", sans-serif; font-weight: 800; font-size: 1.22rem; line-height: 1;
+        background: var(--gold-soft); color: var(--ink); border: 1.5px dashed var(--gold);
+        padding: 5px 10px 4px; border-radius: 6px; transform: rotate(-2deg);
+      }
       .cond {
         font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
         background: var(--gold-soft); color: var(--gold); padding: 4px 8px; border-radius: 6px; white-space: nowrap;
@@ -171,6 +190,7 @@
         display: block; text-align: center; text-decoration: none;
         background: var(--ink); color: var(--bg); font-weight: 700; font-size: .95rem;
         padding: 11px 12px; border-radius: 10px; min-height: 2.75rem;
+        border: 2px solid var(--ink); box-shadow: 3px 3px 0 color-mix(in srgb, var(--ink) 25%, transparent);
       }
       .btn:hover { background: var(--accent); color: #fff; }
       .empty {
@@ -187,11 +207,11 @@
       @media (min-width: 720px) { .panel { padding: 40px 44px; } }
       .panel h2 { font-family: "Baloo 2", sans-serif; font-weight: 800; font-size: clamp(1.6rem, 4vw, 2.3rem); line-height: 1.1; margin: 0 0 12px; }
       .panel p { margin: 0 0 14px; max-width: 62ch; }
-      .want { background: var(--dark-panel); color: var(--dark-panel-ink); }
+      .want { background: var(--dark-panel); color: var(--dark-panel-ink); outline: 2px dashed color-mix(in srgb, var(--gold) 65%, transparent); outline-offset: -13px; }
       .want p { color: color-mix(in srgb, var(--dark-panel-ink) 82%, transparent); }
       .want .btn { background: var(--accent); color: #fff; display: inline-block; padding: 12px 22px; }
       .want .btn:hover { background: var(--bg); color: var(--ink); }
-      .pickup { background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+      .pickup { background: var(--surface); border: 2px solid var(--ink); box-shadow: 6px 6px 0 color-mix(in srgb, var(--ink) 13%, transparent); }
       .pickup-grid { display: grid; gap: 22px; }
       @media (min-width: 760px) { .pickup-grid { grid-template-columns: 1.1fr 1fr; gap: 36px; } }
       .pickup dl { margin: 0; display: grid; gap: 14px; }
@@ -216,11 +236,13 @@
           </div>
         </div>
         <h1>Funko Pops in <span class="pop">Winnipeg</span></h1>
-        <p class="lede">New stock listed every week, and every figure is photographed and condition-checked before it goes up. Sold by Casper, a local Winnipeg collector-seller — what you see in the photo is the exact figure you&rsquo;ll pick up.</p>
-        <div class="stats" aria-label="Stock at a glance">
-          <div class="stat"><b>232</b><span>Pops in stock</span></div>
-          <div class="stat"><b>14</b><span>Categories</span></div>
-          <div class="stat"><b>Weekly</b><span>New listings</span></div>
+        <p class="sticker">Bundle deals welcome — grab a few, save a few bucks</p>
+        <p class="lede">I&rsquo;m Casper. I buy collections and auction lots around Winnipeg, photograph every box myself, and sell them out of Elmwood. The Pop in the photo is the exact one you&rsquo;ll pick up — no stock pictures, no surprises, and if a box has a flaw I&rsquo;ll tell you before you drive over.</p>
+        <div class="strip" aria-label="Stock at a glance">
+          <span><b>232</b> Pops on the table</span><span class="sep" aria-hidden="true">·</span>
+          <span><b>14</b> categories</span><span class="sep" aria-hidden="true">·</span>
+          <span>New stock most weeks</span><span class="sep" aria-hidden="true">·</span>
+          <span>When it&rsquo;s gone, it&rsquo;s gone</span>
         </div>
       </header>
 
@@ -228,7 +250,7 @@
         <div class="toolbar-row">
           <div class="search">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
-            <input id="q" type="search" placeholder="Search by character, franchise or number&hellip;" aria-label="Search listings by title" autocomplete="off" />
+            <input id="q" type="search" placeholder="Who are you hunting for? Name, franchise or number&hellip;" aria-label="Search listings by title" autocomplete="off" />
           </div>
           <label class="sort">
             <span class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Sort listings</span>
@@ -249,9 +271,9 @@
       <section class="block" aria-labelledby="want-h">
         <div class="panel want">
           <h2 id="want-h">Hunting a specific Pop?</h2>
-          <p>Casper sources stock at local auctions every week, so there&rsquo;s a good chance the figure you&rsquo;re after will cross his table sooner or later. Send him a message on Facebook Marketplace with the character, number or variant you&rsquo;re looking for, and he&rsquo;ll keep an eye out and let you know when one turns up.</p>
-          <p>No list to join and nothing to pay up front — just tell him what you&rsquo;re hunting.</p>
-          <a class="btn" href="#grid-top" onclick="document.getElementById('q').focus(); return false;">Browse the current stock first</a>
+          <p>I dig through local auctions and collections every week, so odds are the one you&rsquo;re after crosses my table sooner or later. Message me on Facebook Marketplace with the character, number or variant you&rsquo;re hunting, and I&rsquo;ll keep an eye out — when one turns up, you get first dibs.</p>
+          <p>No list to join and nothing to pay up front — just tell me what you&rsquo;re after.</p>
+          <a class="btn" href="#grid-top" onclick="document.getElementById('q').focus(); return false;">See what&rsquo;s on the table first</a>
         </div>
       </section>
 
@@ -260,7 +282,7 @@
           <h2 id="pickup-h">Pickup &amp; payment</h2>
           <div class="pickup-grid">
             <div>
-              <p>Everything is <strong>local pickup only</strong> — no shipping, no holds without a plan. Message through the Marketplace listing to arrange a time, and bundle deals are welcome: picking up a few at once is the easiest way to save.</p>
+              <p>Everything is <strong>local pickup only</strong> — I meet you outside Jamison Food Marts. No shipping, and no holds without a plan, but bundle a few together and I&rsquo;ll make it worth your while. Message through the Marketplace listing to set a time.</p>
               <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=Jamison+Food+Marts+498+Jamison+Ave+Winnipeg+MB" target="_blank" rel="noopener">Get directions to the pickup spot &rarr;</a>
             </div>
             <dl>
@@ -283,8 +305,8 @@
 
       <footer>
         <div class="rule">
-          <p style="margin:0"><img class="foot-mark" src="/icon-192.png" width="26" height="26" alt="" aria-hidden="true" /><b>Peg City Pops</b> — sold by Casper, a local collector-seller. All prices are in Canadian dollars.</p>
-          <p style="margin:0">Stock moves fast, so message on Marketplace to confirm a figure is still available before coming by. Stock shown as of November 14, 2026.</p>
+          <p style="margin:0"><img class="foot-mark" src="/icon-192.png" width="26" height="26" alt="" aria-hidden="true" /><b>Peg City Pops</b> — run by one collector-seller (and supervised by a cat named Ren) in Elmwood, Winnipeg. All prices are in Canadian dollars.</p>
+          <p style="margin:0">Stock moves fast, so message on Marketplace to check a Pop is still here before you come by. Stock shown as of November 15, 2026.</p>
         </div>
       </footer>
     </main>
@@ -356,14 +378,14 @@
         if (!list.length) {
           var e = document.createElement('div');
           e.className = 'empty';
-          e.innerHTML = '<b>Nothing matches that search</b>Try a different character or franchise — or ask about the want list below, and Casper will watch for it at auction.';
+          e.innerHTML = '<b>Nothing on the table matches that</b>Try another character or franchise — or tell me what you&rsquo;re hunting in the want-list section below and I&rsquo;ll watch for it at the next auction.';
           frag.appendChild(e);
         } else {
           list.forEach(function (it) { frag.appendChild(card(it)); });
         }
         grid.innerHTML = '';
         grid.appendChild(frag);
-        resultLine.innerHTML = 'Showing <b>' + list.length + '</b> of ' + ITEMS.length + ' listings' +
+        resultLine.innerHTML = '<b>' + list.length + '</b> of ' + ITEMS.length + ' Pops on the table' +
           (activeCat !== 'All' ? ' in <b>' + activeCat + '</b>' : '') +
           (q ? ' matching &ldquo;' + q.replace(/</g, '&lt;') + '&rdquo;' : '');
       }

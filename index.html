@@ -71,6 +71,12 @@
 
       /* ---------- Hero ---------- */
       .hero { padding: 44px 0 8px; }
+      .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+      .brand img { width: 54px; height: 54px; border-radius: 13px; box-shadow: var(--shadow); display: block; }
+      .brand .wordmark { font-family: "Baloo 2", "Archivo", sans-serif; font-weight: 800; font-size: 1.45rem; line-height: 1; letter-spacing: .03em; }
+      .brand .wordmark .pops { color: var(--accent); }
+      .brand .tagline { font-size: .78rem; font-weight: 600; letter-spacing: .14em; color: var(--ink-soft); margin-top: 4px; }
+      .foot-mark { width: 26px; height: 26px; border-radius: 6px; vertical-align: -6px; margin-right: 8px; }
       .hero h1 {
         font-family: "Baloo 2", "Archivo", sans-serif;
         font-weight: 800;
@@ -202,6 +208,13 @@
   <body>
     <main class="wrap">
       <header class="hero">
+        <div class="brand">
+          <img src="/icon-192.png" width="54" height="54" alt="Peg City Pops logo — a Funko Pop head on red" />
+          <div>
+            <div class="wordmark">PEG CITY <span class="pops">POPS</span></div>
+            <div class="tagline">WINNIPEG &middot; LOCAL PICKUP</div>
+          </div>
+        </div>
         <h1>Funko Pops in <span class="pop">Winnipeg</span></h1>
         <p class="lede">New stock listed every week, and every figure is photographed and condition-checked before it goes up. Sold by Casper, a local Winnipeg collector-seller — what you see in the photo is the exact figure you&rsquo;ll pick up.</p>
         <div class="stats" aria-label="Stock at a glance">
@@ -270,7 +283,7 @@
 
       <footer>
         <div class="rule">
-          <p style="margin:0"><b>Winnipeg Funko Pops</b> — sold by Casper, a local collector-seller. All prices are in Canadian dollars.</p>
+          <p style="margin:0"><img class="foot-mark" src="/icon-192.png" width="26" height="26" alt="" aria-hidden="true" /><b>Peg City Pops</b> — sold by Casper, a local collector-seller. All prices are in Canadian dollars.</p>
           <p style="margin:0">Stock moves fast, so message on Marketplace to confirm a figure is still available before coming by. Stock shown as of November 14, 2026.</p>
         </div>
       </footer>

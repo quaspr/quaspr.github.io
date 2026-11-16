@@ -385,6 +385,9 @@
             c.setAttribute('aria-pressed', c === b ? 'true' : 'false');
           });
           render();
+          var topEl = document.getElementById('grid-top');
+          var y = topEl.getBoundingClientRect().top + window.scrollY - 8;
+          window.scrollTo({ top: Math.max(y, 0), behavior: reduceMotion ? 'auto' : 'smooth' });
         });
         return b;
       }

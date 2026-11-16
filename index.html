@@ -213,6 +213,9 @@
       .want .btn { background: var(--accent); color: #fff; display: inline-block; padding: 12px 22px; }
       .want .btn:hover { background: var(--bg); color: var(--ink); }
       .pickup { background: var(--surface); border: 2px solid var(--ink); box-shadow: 6px 6px 0 color-mix(in srgb, var(--ink) 13%, transparent); }
+      .alerts { background: var(--surface); border: 2px solid var(--ink); box-shadow: 6px 6px 0 color-mix(in srgb, var(--ink) 13%, transparent); }
+      .alerts iframe { width: 100%; border: 0; display: block; margin-top: 14px; }
+      .alerts .fineprint { font-size: .9rem; color: var(--ink-soft); margin: 12px 0 0; }
       .pickup-grid { display: grid; gap: 22px; }
       @media (min-width: 760px) { .pickup-grid { grid-template-columns: 1.1fr 1fr; gap: 36px; } }
       .pickup dl { margin: 0; display: grid; gap: 14px; }
@@ -324,6 +327,15 @@
               </div>
             </dl>
           </div>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="alerts-h">
+        <div class="panel alerts">
+          <h2 id="alerts-h">Get first dibs</h2>
+          <p>New stock lands in bursts, and the good stuff goes fast. Tick the categories you collect and I&rsquo;ll email you the moment something new in them hits the table — no spam, no everything-blasts, just the categories you picked. Unsubscribe anytime.</p>
+          <iframe title="Peg City Pops category email alerts signup" src="https://60dea17b.sibforms.com/v2/serve/MUIFACPFX_ajJab4TuSWx2p9_xWyP5kx_q_n_ro65ySezQDfm0_b-2t0ae_I1Fpan_RhwQHYAjwp5Lph6kE_tNwBsv0qJukW8sYK45esmTxd6SsC1I6_vB-x_Le15YfywDMFviiza6BbmE1Uwve0L8fYXdtF1-EQ3VaqPrKEUvwm9-1b2ilz54gx0rkYIrq2PHOgcWZPp-AWtMQtSQ==" width="100%" height="640" frameborder="0" scrolling="auto" allowfullscreen></iframe>
+          <p class="fineprint">You&rsquo;ll get one confirmation email to click first (double opt-in), then alerts only for the categories you ticked.</p>
         </div>
       </section>
 
